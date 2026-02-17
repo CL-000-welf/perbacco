@@ -1,1 +1,313 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Perbacco Srls — Champagne & Selezione Vini</title>
+  <meta name="description" content="Perbacco Srls commercializza vino con focus su Champagne selezionati. Personalizzazione etichette per ristoranti, privati o la tua linea di bottiglie." />
+  <style>
+    :root{
+      --bg:#070707;
+      --panel: rgba(255,255,255,.06);
+      --stroke: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.55);
+      --gold1:#C6A75E; --gold2:#E7D39A; --gold3:#B8963E;
+      --shadow: 0 30px 90px rgba(0,0,0,.65);
+      --r: 22px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(700px 700px at 50% -10%, rgba(255,255,255,.12), transparent 60%),
+                  radial-gradient(600px 600px at 10% 110%, rgba(255,255,255,.06), transparent 60%),
+                  radial-gradient(700px 700px at 90% 120%, rgba(255,255,255,.06), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.45;
+    }
+    a{color:var(--text); text-decoration-color: rgba(255,255,255,.35); text-underline-offset: 4px;}
+    a:hover{text-decoration-color: rgba(255,255,255,.8);}
+    .container{max-width:1100px; margin:0 auto; padding:0 22px;}
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,.45);
+      border-bottom:1px solid var(--stroke);
+    }
+    .topbar{display:flex; align-items:center; justify-content:space-between; padding:16px 0;}
+    .brand{display:flex; align-items:center; gap:14px;}
+    .tagrow{display:none; gap:10px; align-items:center;}
+    .tag{
+      font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+      padding:8px 12px; border-radius:999px;
+      background: rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.10);
+      color:rgba(255,255,255,.85);
+      white-space:nowrap;
+    }
+    @media (min-width: 880px){ .tagrow{display:flex;} }
 
+    .hero{padding:54px 0 28px;}
+    .grid{display:grid; gap:22px;}
+    @media (min-width: 900px){ .grid{grid-template-columns: 1.15fr .85fr; align-items:center; gap:26px;} }
+
+    .badgebar{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:18px;}
+    .badge{
+      font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+      padding:8px 12px; border-radius:999px;
+      background: rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.10);
+      color:rgba(255,255,255,.88);
+    }
+    h1{
+      margin:0;
+      font-weight:650;
+      letter-spacing:-.02em;
+      font-size: clamp(34px, 4.2vw, 54px);
+    }
+    .sub{margin:14px 0 0; color:var(--muted); max-width:56ch; font-size:16px;}
+    .btnrow{display:flex; flex-wrap:wrap; gap:12px; margin-top:24px;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 16px; border-radius:16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.10);
+      color:var(--text);
+      text-decoration:none;
+    }
+    .btn.primary{
+      background: white;
+      color:#0b0b0b;
+      border-color: transparent;
+    }
+    .btn:hover{transform: translateY(-1px);}
+    .btn{transition: transform .15s ease, background .15s ease, border-color .15s ease;}
+
+    .card{
+      border-radius: 26px;
+      background: var(--panel);
+      border:1px solid var(--stroke);
+      box-shadow: var(--shadow);
+    }
+    .card.pad{padding:18px;}
+    .mockbox{padding:18px;}
+    .mockgrid{display:grid; gap:12px; margin-top:14px;}
+    @media (min-width: 520px){ .mockgrid{grid-template-columns:1fr 1fr;} }
+    .mini{
+      border-radius: 18px;
+      background: rgba(0,0,0,.28);
+      border:1px solid rgba(255,255,255,.10);
+      padding:14px;
+    }
+    .mini .k{font-size:12px; color:var(--muted2);}
+    .mini .v{margin-top:6px; font-size:16px; font-weight:600;}
+    .mini .line{margin-top:10px; color:var(--muted); font-size:13px;}
+    .section{padding:24px 0;}
+    h2{margin:0; font-size:24px; letter-spacing:-.01em;}
+    .p{margin:10px 0 0; color:var(--muted); max-width:70ch;}
+    .cards3{display:grid; gap:14px; margin-top:16px;}
+    @media (min-width: 880px){ .cards3{grid-template-columns: 1fr 1fr 1fr; gap:18px;} }
+    .item{padding:18px 18px 16px;}
+    .item h3{margin:8px 0 6px; font-size:18px;}
+    .item .small{color:var(--muted2); font-size:13px; margin:0 0 10px;}
+    ul{margin:0; padding-left:16px; color:var(--muted); font-size:14px;}
+    li{margin:6px 0;}
+    .contact3{display:grid; gap:14px; margin-top:16px;}
+    @media (min-width: 880px){ .contact3{grid-template-columns: 1fr 1fr 1fr; gap:18px;} }
+    .email{font-size:14px;}
+    footer{
+      margin-top:18px;
+      border-top:1px solid var(--stroke);
+      background: rgba(0,0,0,.35);
+      color:rgba(255,255,255,.55);
+      font-size:13px;
+      padding:20px 0;
+    }
+    .gold{background: linear-gradient(135deg, var(--gold1), var(--gold2), var(--gold3));
+      -webkit-background-clip:text; background-clip:text; color:transparent;}
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <!-- LOGO (SVG vettoriale, ridotto per header) -->
+        <svg width="46" height="46" viewBox="0 0 1200 1200" aria-label="Logo Perbacco" role="img">
+          <defs>
+            <linearGradient id="goldH" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#C6A75E"/>
+              <stop offset="50%" stop-color="#E7D39A"/>
+              <stop offset="100%" stop-color="#B8963E"/>
+            </linearGradient>
+          </defs>
+          <rect x="170" y="170" width="860" height="860" rx="120" fill="none" stroke="url(#goldH)" stroke-width="26"/>
+          <g transform="translate(600,520)">
+            <text text-anchor="middle" font-family="Times New Roman, serif" font-size="320" fill="url(#goldH)" letter-spacing="12">PB</text>
+          </g>
+          <g transform="translate(600,300)">
+            <path d="M0 -140 C -85 -45 -110 25 0 125 C 110 25 85 -45 0 -140 Z"
+                  fill="none" stroke="url(#goldH)" stroke-width="24"/>
+            <line x1="0" y1="125" x2="0" y2="205" stroke="url(#goldH)" stroke-width="24"/>
+          </g>
+        </svg>
+
+        <div>
+          <div style="font-weight:650; letter-spacing:.22em;">PERBACCO</div>
+          <div style="font-size:11px; letter-spacing:.35em; color: rgba(231,211,154,.75);">SRLS · CHAMPAGNE</div>
+        </div>
+      </div>
+
+      <div class="tagrow">
+        <div class="tag">B2B</div>
+        <div class="tag">Privati</div>
+        <div class="tag">Etichette su misura</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero grid">
+      <div>
+        <div class="badgebar">
+          <div class="badge">Selezione Champagne</div>
+          <div class="badge">Import & distribuzione</div>
+          <div class="badge">Personalizzazione etichette</div>
+        </div>
+
+        <h1>
+          Champagne per il tuo locale,
+          <span style="color: rgba(255,255,255,.70);">o la tua bottiglia personalizzata.</span>
+        </h1>
+
+        <p class="sub">
+          Perbacco Srls commercializza vino con focus su Champagne selezionati.
+          Realizziamo etichette personalizzate per ristoranti, eventi privati e per chi desidera
+          creare una linea di bottiglie con il proprio brand.
+        </p>
+
+        <div class="btnrow">
+          <a class="btn primary" href="#contatti">Richiedi informazioni</a>
+          <a class="btn" href="#etichette">Progetti etichetta su misura</a>
+        </div>
+
+        <p style="margin:14px 0 0; color: rgba(255,255,255,.55); font-size:13px;">
+          Sito: <span class="gold">www.perbaccosrls.com</span>
+        </p>
+      </div>
+
+      <div class="card mockbox">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="font-size:13px; color: rgba(255,255,255,.78); font-weight:600;">Mock etichetta</div>
+          <div style="font-size:12px; color: rgba(255,255,255,.60);">premium ✦</div>
+        </div>
+
+        <div class="mockgrid">
+          <div class="mini">
+            <div class="k">Linea</div>
+            <div class="v">Perbacco <span class="gold">Sélection</span></div>
+            <div class="line">Champagne & bollicine</div>
+          </div>
+          <div class="mini">
+            <div class="k">Personalizzazione</div>
+            <div class="v">Nome / Logo</div>
+            <div class="line">Etichetta su misura</div>
+          </div>
+        </div>
+
+        <div class="mini" style="margin-top:12px;">
+          <div style="font-weight:600;">Tre scenari, un solo fornitore</div>
+          <div style="margin-top:6px; color: rgba(255,255,255,.70); font-size:14px;">
+            Ristoranti · Privati · Linee personalizzate con continuità di fornitura.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="etichette" class="section">
+      <h2>Etichetta personalizzata</h2>
+      <p class="p">
+        Personalizziamo l’etichetta in base al tuo caso d’uso, mantenendo una resa elegante e coerente con il prodotto.
+      </p>
+
+      <div class="cards3">
+        <div class="card item">
+          <h3>Ristoranti</h3>
+          <p class="small">Carta vini e house label</p>
+          <ul>
+            <li>Etichetta con logo del locale</li>
+            <li>Lotti e riordini programmabili</li>
+            <li>Supporto tecnico per fornitura</li>
+          </ul>
+        </div>
+
+        <div class="card item">
+          <h3>Privati</h3>
+          <p class="small">Eventi e regali</p>
+          <ul>
+            <li>Nomi, date, ricorrenze</li>
+            <li>Proposta grafica coordinata</li>
+            <li>Tempi chiari di consegna</li>
+          </ul>
+        </div>
+
+        <div class="card item">
+          <h3>Tua linea</h3>
+          <p class="small">Brand & continuità</p>
+          <ul>
+            <li>Naming, etichetta e varianti</li>
+            <li>Packaging e materiali</li>
+            <li>Coordinamento Italia/Francia</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contatti" class="section">
+      <h2>Contatti</h2>
+      <p class="p">Tre caselle, dritte al punto: commerciale e supporto tecnico per Italia e Francia.</p>
+
+      <div class="contact3">
+        <div class="card item">
+          <h3>Commerciale</h3>
+          <p class="small">Prodotti & preventivi</p>
+          <div class="email">
+            <a href="mailto:commerciale@perbaccosrls.com">commerciale@perbaccosrls.com</a>
+          </div>
+        </div>
+
+        <div class="card item">
+          <h3>Tecnico Italia</h3>
+          <p class="small">Forniture & supporto</p>
+          <div class="email">
+            <a href="mailto:tecnico.italia@perbaccosrls.com">tecnico.italia@perbaccosrls.com</a>
+          </div>
+        </div>
+
+        <div class="card item">
+          <h3>Tecnico Francia</h3>
+          <p class="small">Coordinamento Francia</p>
+          <div class="email">
+            <a href="mailto:tecnico.francia@perbaccosrls.com">tecnico.francia@perbaccosrls.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="y"></span> Perbacco Srls — Champagne & Selezione Vini · www.perbaccosrls.com
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
